@@ -1,0 +1,12 @@
+.container{
+    display: grid;
+    gap:20px;
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    color: white;
+    margin-inline: auto;
+    max-width: 1200px;
+}
+
+.book{
+    background: rgba(0,0,0,0.75);
+}
