@@ -3,7 +3,7 @@ import "./Navbar.css"
 
 function Navbar() {
   return (
-    <div class="navbar">
+    <div className="navbar">
         <h1>My Reading List</h1>
         <button className='navbar_button'>New book</button>
     </div>
