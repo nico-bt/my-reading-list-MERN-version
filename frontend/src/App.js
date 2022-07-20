@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import BookList from "./components/BookList";
+import Form from './components/Form';
 import Navbar from "./components/Navbar";
 
 function App() {
   const [books, setBooks] = useState([])
+  const [showForm, setShowForm] = useState(false)
 
     // Fetch data
     useEffect(() => {
@@ -19,8 +21,9 @@ function App() {
 
   return (
     <div>
-      <Navbar />
+      <Navbar setShowForm={setShowForm}/>
       <BookList books={books} />
+      {showForm && <Form setShowForm={setShowForm} />}
     </div>
   );
 }
