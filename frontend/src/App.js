@@ -8,25 +8,34 @@ import { BookContext } from './context/BookContext';
 function App() {
   // const [books, setBooks] = useState([])
   const [showForm, setShowForm] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState(false)
   const {books, dispatch} = useContext(BookContext)
 
     // Fetch data
     useEffect(() => {
-        const fetchBooks = async ()=>{
-            const response = await fetch("http://localhost:4000/api/books")
-            const data = await response.json()
-            if(response.ok){
-                // setBooks(data)
-                dispatch({type:"SET_ALL_BOOKS", payload: data})
-            }
+      const fetchBooks = async ()=>{
+        try {
+          const response = await fetch("http://localhost:4000/api/books")
+          const data = await response.json()
+          if(response.ok){
+            // setBooks(data)
+            dispatch({type:"SET_ALL_BOOKS", payload: data})
+            setError(false)
+            setIsLoading(false)
+          }
+        } catch (err) {
+          setError(true)
+          setIsLoading(false)
         }
-        fetchBooks()
+      }
+      fetchBooks()
     }, [dispatch])
 
   return (
     <div>
       <Navbar setShowForm={setShowForm}/>
-      {books.length===0 && <EmptyListMessage />}
+      {books.length===0 && <EmptyListMessage error={error} isLoading={isLoading} />}
       <BookList books={books} />
       {showForm && <Form setShowForm={setShowForm} />}
     </div>
