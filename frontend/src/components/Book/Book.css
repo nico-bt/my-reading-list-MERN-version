@@ -37,6 +37,23 @@
     padding: 0.45rem 1rem;
     margin: 0;
 }
+.readMarker{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+.readMarker:hover{
+    background-color: gray;
+}
+.red{
+    color:red
+}
+.green{
+    color: green
+}
+
 hr{
     margin: 0;
     padding: 0;
