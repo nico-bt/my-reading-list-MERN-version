@@ -21,6 +21,11 @@ export const booksReducer = (state, action)=>{
                 // get the id as payload and filter actual state
                 books: state.books.filter(item => item._id != action.payload)
             }
+        case "TOOGLE_READ_STATUS":
+            return {
+                // get the id as payload and toogle .teadComplete if match id
+                books: state.books.map(item => (item._id != action.payload._id)? item : action.payload )
+            }
         default:
             return state
     }
