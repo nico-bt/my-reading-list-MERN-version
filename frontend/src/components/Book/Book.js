@@ -1,10 +1,12 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { BookContext } from '../../context/BookContext'
+import EditForm from '../EditForm/EditForm'
 import "./Book.css"
 
 function Book({book}) {
 
     const {dispatch} = useContext(BookContext)
+    const [showEditForm, setShowEditForm] = useState(false)
 
     const deleteBook = async ()=>{
         const response = await fetch("http://localhost:4000/api/books/" + book._id, {
@@ -29,11 +31,15 @@ function Book({book}) {
     }
 
   return (
+    <>
         <div key={book._id} className="card">
             <div className='space-between'>
                 <div className="card-title">
                     <span className="card-delete-btn material-symbols-outlined" onClick={deleteBook}>
                         delete
+                    </span>
+                    <span className="card-edit-btn material-symbols-outlined" onClick={()=>setShowEditForm(true)}>
+                        edit
                     </span>
                     {book.title}
                 </div>
@@ -57,6 +63,9 @@ function Book({book}) {
             </div>
 
         </div>
+
+        {showEditForm && <EditForm bookToEdit={book} setShowEditForm={setShowEditForm} />}
+    </>
     )
 }
 

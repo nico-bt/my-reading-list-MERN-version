@@ -16,16 +16,35 @@
 .card-delete-btn{
     position: absolute;
     right: 4px;
-    top: 4px;
+    top: 0;
     cursor: pointer;
     color: rgb(185, 0, 0);
     font-size: 1.5rem;
+    padding: 2px;
+}
+.card-delete-btn:hover{
+    background-color: red;
+    color: white;
+}
+.card-edit-btn{
+    position: absolute;
+    right: 36px;
+    top: 0;
+    cursor: pointer;
+    color: gray;
+    font-size: 1.5rem;
+    padding: 2px;
+}
+.card-edit-btn:hover{
+    background-color: gray;
+    color: white;
 }
 
 .card-title{
     text-align: center;
     font-size: 1.5rem;
-    padding: 1.5rem 0;
+    padding: 1.4rem 0.24rem;
+    margin-top: 4px;
 }
 .card-body{
     background-color: white;
