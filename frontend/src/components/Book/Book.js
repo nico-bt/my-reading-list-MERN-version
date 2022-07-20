@@ -4,7 +4,7 @@ import "./Book.css"
 
 function Book({book}) {
 
-    const {books, dispatch} = useContext(BookContext)
+    const {dispatch} = useContext(BookContext)
 
     const deleteBook = async ()=>{
         const response = await fetch("http://localhost:4000/api/books/" + book._id, {
@@ -43,9 +43,9 @@ function Book({book}) {
                     <hr></hr>
                     <p className='readMarker' onClick={handleClick}>
                         {book.readComplete? 
-                            (<><span>Leido</span> <span class='material-symbols-outlined green'>check_box</span></>) 
+                            (<><span>Leido</span> <span className='material-symbols-outlined green'>check_box</span></>) 
                             : 
-                            (<><span>Por leer</span> <span class="material-symbols-outlined red">menu_book</span></>)
+                            (<><span>Por leer</span> <span className="material-symbols-outlined red">menu_book</span></>)
                         } 
                     </p>
                             
