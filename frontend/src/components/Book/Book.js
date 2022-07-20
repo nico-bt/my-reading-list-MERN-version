@@ -18,22 +18,23 @@ function Book({book}) {
 
   return (
         <div key={book._id} className="card">
+            <div className='space-between'>
+                <div className="card-title">
+                    <span className="card-delete-btn material-symbols-outlined" onClick={deleteBook}>
+                        delete
+                    </span>
+                    {book.title}
+                </div>
 
-            <div className="card-title">
-                <span className="card-delete-btn material-symbols-outlined" onClick={deleteBook}>
-                    delete
-                </span>
-                {book.title}
-            </div>
-            
-            <div className="card-body">
-                <p>{book.author}</p>
-                <hr></hr>
-                <p>{book.readComplete? "Leido" : "Falta leer"}</p>
+                <div className="card-body">
+                    <p>{book.author}</p>
+                    <hr></hr>
+                    <p>{book.readComplete? "Leido" : "Falta leer"}</p>
+                </div>
             </div>
             
             <div className="card-footer">
-                <a href={book.link} target="_blank"> {book.link? "Book Link":"Add link"}</a> 
+               {book.link? (<a href={book.link} target="_blank" rel="noreferrer"> Book Link</a>) : ("-") }
             </div>
 
         </div>
