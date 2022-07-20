@@ -16,6 +16,18 @@ function Book({book}) {
         }
     }
 
+    const handleClick = async() => {
+        const response = await fetch("http://localhost:4000/api/books/" + book._id, {
+            method: "PATCH",
+            body: JSON.stringify({readComplete: !book.readComplete}),
+            headers: {"Content-Type": "application/json"}
+        })
+        if(response.ok){
+            const updatedBook = {...book, readComplete:!book.readComplete}
+            dispatch({type:"TOOGLE_READ_STATUS", payload: updatedBook})
+        }
+    }
+
   return (
         <div key={book._id} className="card">
             <div className='space-between'>
@@ -29,7 +41,14 @@ function Book({book}) {
                 <div className="card-body">
                     <p>{book.author}</p>
                     <hr></hr>
-                    <p>{book.readComplete? "Leido" : "Falta leer"}</p>
+                    <p className='readMarker' onClick={handleClick}>
+                        {book.readComplete? 
+                            (<><span>Leido</span> <span class='material-symbols-outlined green'>check_box</span></>) 
+                            : 
+                            (<><span>Por leer</span> <span class="material-symbols-outlined red">menu_book</span></>)
+                        } 
+                    </p>
+                            
                 </div>
             </div>
             
