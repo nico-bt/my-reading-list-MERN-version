@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
+import { BookContext } from '../../context/BookContext'
 import "./Form.css"
 
 function Form({setShowForm}) {
@@ -6,8 +7,8 @@ function Form({setShowForm}) {
     const [title, setTitle] = useState("")
     const [author, setAuthor] = useState("")
     const [link, setLink] = useState("")
-    const [error, setError] = useState(null)
     const [submittedEmpty, setSubmittedEmpty] = useState(false)
+    const {books, dispatch} = useContext(BookContext)
 
     const handleSubmit = async (e)=>{
         e.preventDefault()
@@ -27,6 +28,9 @@ function Form({setShowForm}) {
                 setLink("")
                 setSubmittedEmpty(false)
                 setShowForm(false)
+                
+                const newBook = await response.json()
+                dispatch({type:"CREATE_BOOK", payload: newBook})
             }
         } catch(err){
             console.log(err)
@@ -61,8 +65,6 @@ function Form({setShowForm}) {
             </input>
 
             <button type='submit' className='submit-btn'>Add Book</button>
-
-            {error && <div className='error'>{error}</div>}
         </form>
     </div>
   )

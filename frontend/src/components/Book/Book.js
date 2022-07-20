@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { BookContext } from '../../context/BookContext'
 import "./Book.css"
 
 function Book({book}) {
+
+    const {books, dispatch} = useContext(BookContext)
 
     const deleteBook = async ()=>{
         const response = await fetch("http://localhost:4000/api/books/" + book._id, {
@@ -9,7 +12,7 @@ function Book({book}) {
             headers: {"Content-Type": "application/json"}
         })
         if(response.ok){
-            console.log(response)
+            dispatch({type: "DELETE_BOOK", payload: book._id})
         }
     }
 
