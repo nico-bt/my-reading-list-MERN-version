@@ -1,5 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react'
 import BookList from "./components/BookList/BookList";
+import EmptyListMessage from './components/EmptyListMessage/EmptyListMessage';
 import Form from './components/Form/Form';
 import Navbar from "./components/Navbar/Navbar";
 import { BookContext } from './context/BookContext';
@@ -20,11 +21,12 @@ function App() {
             }
         }
         fetchBooks()
-    }, [])
+    }, [dispatch])
 
   return (
     <div>
       <Navbar setShowForm={setShowForm}/>
+      {books.length===0 && <EmptyListMessage />}
       <BookList books={books} />
       {showForm && <Form setShowForm={setShowForm} />}
     </div>
