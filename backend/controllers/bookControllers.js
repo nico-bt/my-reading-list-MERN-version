@@ -4,7 +4,7 @@ const Book = require("../models/BookModel")
 // GET ALL books
 const getAllBooks = async (req, res)=>{
     try {
-        const books = await Book.find({}).sort({createdAt: -1})
+        const books = await Book.find({}).sort({readComplete:1, createdAt: -1})
         res.status(200).json(books)
     } catch (error) {
         res.status(400).json(error.message)
