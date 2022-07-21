@@ -17,7 +17,7 @@ function EditForm({bookToEdit, setShowEditForm}) {
             return
         }
         try {
-            const response = await fetch("http://localhost:4000/api/books/"+bookToEdit._id, {
+            const response = await fetch("/api/books/"+bookToEdit._id, {
                 method: "PATCH",
                 body: JSON.stringify({title, author, link}),
                 headers: {"Content-Type": "application/json"}

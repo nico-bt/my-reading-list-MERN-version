@@ -8,7 +8,7 @@ function Form({setShowForm}) {
     const [author, setAuthor] = useState("")
     const [link, setLink] = useState("")
     const [submittedEmpty, setSubmittedEmpty] = useState(false)
-    const {books, dispatch} = useContext(BookContext)
+    const {dispatch} = useContext(BookContext)
 
     const handleSubmit = async (e)=>{
         e.preventDefault()
@@ -17,7 +17,7 @@ function Form({setShowForm}) {
             return
         }
         try {
-            const response = await fetch("http://localhost:4000/api/books", {
+            const response = await fetch("/api/books", {
                 method: "POST",
                 body: JSON.stringify({title, author, link}),
                 headers: {"Content-Type": "application/json"}

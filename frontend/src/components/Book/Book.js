@@ -9,7 +9,7 @@ function Book({book}) {
     const [showEditForm, setShowEditForm] = useState(false)
 
     const deleteBook = async ()=>{
-        const response = await fetch("http://localhost:4000/api/books/" + book._id, {
+        const response = await fetch("/api/books/" + book._id, {
             method: "DELETE",
             headers: {"Content-Type": "application/json"}
         })
@@ -19,7 +19,7 @@ function Book({book}) {
     }
 
     const handleClick = async() => {
-        const response = await fetch("http://localhost:4000/api/books/" + book._id, {
+        const response = await fetch("/api/books/" + book._id, {
             method: "PATCH",
             body: JSON.stringify({readComplete: !book.readComplete}),
             headers: {"Content-Type": "application/json"}
