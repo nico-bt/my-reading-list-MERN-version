@@ -1,5 +1,7 @@
 //Enviroment variables
 require('dotenv').config()
+//Path
+const path = require("path")
 
 // Express
 const express = require("express")
@@ -26,10 +28,11 @@ const mongoose = require("mongoose")
 //Routes
 app.use("/api/books", require("./routes/books"))
 
+// For production - deploy to Heroku
 if(process.env.NODE_ENV === "production"){
-    app.use(express.static("../frontend/build"))
+    app.use(express.static(path.join(__dirname, "..", "frontend", "build")))
     app.get("*", (req, res)=>{
-        res.sendFile("../frontend/build/index.html")
+        res.sendFile(path.join(__dirname, "..", "frontend", "build", "index.html"))
     })
 }
 
