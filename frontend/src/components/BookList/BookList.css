@@ -3,7 +3,8 @@
     gap:20px;
     grid-template-columns: repeat(auto-fit, 18rem);
     color: white;
-    max-width: 1200px;
+    max-width: 2000px;
     justify-content: center;
     margin-bottom: 100px;
+    margin-inline: auto;
 }
