@@ -6,4 +6,5 @@
     max-width: 1200px;
     justify-content: center;
     margin-bottom: 100px;
+    margin-inline: auto;
 }
